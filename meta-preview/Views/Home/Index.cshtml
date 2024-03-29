@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+   <section>
+       <form method="POST" id="meta-form" action="@Url.Action("GetData", "Home")">
+           <h2>Meta Preview</h2>
+           <input type="text" id="meta-url-input" name="url" value="@ViewBag.Url"/>
+           <input type="submit" value="Show Preview"/>
+       </form>
+   </section>
+    <section id="sec-preview" class="row">
+        <div class="preview-sidebar col-lg-4 col-md-4 col-sm-12">
+            <div class="input-preview d-flex flex-column">
+                <h6>Meta Data</h6>
+                <label for="meta-title-input">Title</label>
+                <input type="text" id="meta-title-input" class="form-control" value="@ViewBag.urlTitle" />
+                <label for="meta-desc-input">Description</label>
+                <textarea type="text" id="meta-desc-input" class="form-control" rows="4"> @ViewBag.Description </textarea>
+                <label for="meta-img-input" class="meta-img-input" style="background:url(@ViewBag.imgurl)">og:image</label>
+                <input type="file" id="meta-img-input" />
+            </div>
+        </div>
+        <div class="preview-main d-flex flex-column col-lg-8 col-md-8 col-sm-12" >
+            <h6>Preview</h6>
+            <div class="preview-google">
+                <span class="preview-title">Google</span>
+                <div class="google-preview d-flex flex-column">
+                    <span class="google-title-preview title-text">@ViewBag.urlTitle</span>
+                    <div class="google-url-preview-container"><span class="google-url-preview">@ViewBag.Url</span><span class="google-url-preview-arrow"></span></div>
+                    <span class="google-description-preview desc-text">@ViewBag.Description</span>
+                </div>
+            </div>
+            <div class="preview-twitter">
+                <span class="preview-title">Twitter</span>
+                <div class="twitter-preview d-flex flex-column">
+                    <img src="@ViewBag.imgurl" class="twitter-img-preview"/>
+                    <div class="twitter-text-area">
+                        <span class="twitter-title-preview title-text">@ViewBag.urlTitle</span>
+                        <span class="twitter-description-preview desc-text">@ViewBag.Description</span>
+                        <span class="twitter-domain-preview">@ViewBag.Domain</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-facebook">
+                <span class="preview-title">Facebook</span>
+                <div class="facebook-preview d-flex flex-column">
+                    <img src="@ViewBag.imgurl" class="facebook-img-preview"/>
+                    <div class="facebook-text-area">
+                        <span class="facebook-domain-preview">@ViewBag.Domain</span>
+                        <div class="facebook-text-main">
+                            <span class="facebook-title-preview title-text">@ViewBag.urlTitle</span>
+                            <span class="facebook-description-preview desc-text">@ViewBag.Description</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-linkedin">
+                <span class="preview-title">Linkedin</span>
+                <div class="linkedin-preview d-flex flex-column">
+                    <img src="@ViewBag.imgurl" class="linkedin-img-preview"/>
+                    <div class="linkedin-text-area">
+                        <span class="linkedin-title-preview title-text">@ViewBag.urlTitle</span>
+                        <span class="linkedin-domain-preview">@ViewBag.Domain</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-pinterest">
+                <span class="preview-title">Pinterest</span>
+                <div class="pinterest-preview d-flex flex-column">
+                    <img src="@ViewBag.imgurl" class="pinterest-img-preview" />
+                    <div class="pinterest-text-area">
+                        <div class="pinterest-title-preview title-text">@ViewBag.urlTitle</div>
+                        <div class="pinterest-option-preview">
+                            <div class="opt-dot"></div>
+                            <div class="opt-dot"></div>
+                            <div class="opt-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script>
+    document.getElementById('meta-title-input').addEventListener('keyup', function () {
+        var inputValue = this.value;
+        var titleTextElements = document.getElementsByClassName('title-text');
+        for (var i = 0; i < titleTextElements.length; i++) {
+            titleTextElements[i].textContent = inputValue;
+        }
+    });
+    document.getElementById('meta-desc-input').addEventListener('keyup', function () {
+        var inputValue = this.value;
+        var titleTextElements = document.getElementsByClassName('desc-text');
+        for (var i = 0; i < titleTextElements.length; i++) {
+            titleTextElements[i].textContent = inputValue;
+        }
+    });
+</script>
